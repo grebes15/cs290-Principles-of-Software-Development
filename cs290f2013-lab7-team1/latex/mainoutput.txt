@@ -1,0 +1,12 @@
+﻿weyante2@aldenv185:~/cs290/lab7/cs290f2013-lab7-team1/example/ant$ ant run
+Buildfile: /home/w/weyante2/cs290/lab7/cs290f2013-lab7-team1/example/ant/build.xml
+
+run:
+     [java] The type of triangle is EQUILATERAL
+     [java] The type of triangle is INVALID
+     [java] The type of triangle is INVALID
+     [java] The type of triangle is SCALENE
+     [java] The type of triangle is ISOSCELES
+
+BUILD SUCCESSFUL
+Total time: 1 second

@@ -1,0 +1,8 @@
+USAGE:
+
+-C #totalCost
+     AND
+-file fileName
+      OR
+-rq #req,#cost,#benefit,desc,#req, ...
+ 

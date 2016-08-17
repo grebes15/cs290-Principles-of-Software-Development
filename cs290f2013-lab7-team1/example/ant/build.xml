@@ -1,0 +1,115 @@
+<project name="Triangle" default="compile" basedir=".">
+
+<!-- ##############################################
+      Path to Major and Mutation options 
+      Use -Dmutation="=mml-file" to set path to mml-file
+     ############################################## -->
+    <property name="mutation" value=":NONE"/>
+    <property name="mutator" value="-XMutator${mutation}"/>
+    <property name="major" value="../../javac"/>
+
+
+    <property name="lib.dir" value="../../lib" />
+	<property name="src.dir" location="src/" />
+    <property name="build.dir" location="bin/" />
+    <property name="config.logging.dir" value="../../config/logging" />
+	<property name="config.dir" value="../../config" />
+	<property name="version" value="1.0" />
+
+	<!-- Load the log4j properties -->
+	<loadproperties>
+        <file file="../../config/logging/log4j.properties" />
+	</loadproperties>
+
+	<!-- The standard classpath for building the system -->
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}" includes="*.jar" />
+	</path>
+
+	<!-- The classpath for running the system -->
+	<path id="run.classpath">
+		<pathelement path="${build.dir}"/>
+		<fileset dir="${lib.dir}" includes="*.jar"/>
+	</path>
+
+<!-- Target to clean up -->
+    <target name="clean" description="Clean">
+        <delete dir="bin"/>
+        <delete>
+            <fileset dir="." includes="*.csv"/>
+            <fileset dir="." includes="*.log"/>
+	    </delete>
+    </target>
+
+<!-- Target to initialize build -->
+    <target name="init">
+        <mkdir dir="bin"/>
+    </target>
+
+<!-- Target to compile the project -->
+    <target name="compile" depends="init" description="Compile">
+        <javac includeantruntime="true" 
+               srcdir="src"
+              destdir="bin"
+                debug="yes"
+	             fork="yes"
+	       executable="${major}">
+
+            <compilerarg value="${mutator}"/>
+        </javac>
+    </target>
+
+<!-- Target to compile the test suite -->
+    <target name="compile.tests" depends="compile" description="Compile all tests">
+        <javac includeantruntime="true" 
+               srcdir="test"
+              destdir="bin"
+                debug="yes"
+	             fork="yes"
+	       executable="${major}">
+        </javac>
+    </target>
+
+<!-- The adapted mutation test target -->
+    <target name="mutation.test" description="Run mutation analysis for all unit test cases">
+        <echo message="Running mutation analysis ..."/>
+        <junit  printsummary="false" 
+        		showoutput="false" 
+        		mutationAnalysis="true"
+                resultFile="results.csv" 
+                killDetailsFile="kill.csv">
+                
+            <classpath path="bin"/>
+			
+			<batchtest fork="false">
+                <fileset dir="test">
+                    <include name="**/*Test*.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+	<!-- RUNNING TASK - "ant listswap" -->
+	<target name="run">
+		<java fork="true" classname="triangle.Triangle" maxmemory="1024m">
+			<classpath refid="run.classpath" />
+		</java>
+    </target>
+
+<!-- The original test target -->
+    <target name="test" description="Run all unit test cases">
+        <echo message="Running unit tests ..."/>
+        <junit  printsummary="true" 
+        		showoutput="true" 
+                haltonfailure="false">
+            <formatter type="plain" usefile="false"/>
+            <classpath path="bin"/>
+			
+			<batchtest fork="no">
+                <fileset dir="test">
+                    <include name="**/*Test*.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+</project>

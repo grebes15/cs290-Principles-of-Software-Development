@@ -1,0 +1,46 @@
+\documentclass{article}
+\begin{document}
+\begin{center}
+
+\textbf{Computer Science 290 Team 3 Final Project}
+\\
+Design Document
+\end{center}
+\noindent
+\textbf{\Large System Design}
+\\
+Our software system for this project will focus on the creation of six discrete modules which will publish formal APIs for interoperability, and will perform the various functions required of the system. These modules are as follows:
+\\
+\begin{description}
+\item[1. User Interface (UI) module] \hfill
+\begin{itemize}
+\item The UI module contains the various user interface components, including a command line interface and a graphical interface implementation, as well as containing platform-specific implementations of abstract features offered by the other modules' APIs.
+\end{itemize}
+\item[2. Twitter Authentication (OA) module] \hfill 
+\begin{itemize}
+\item The OA module contains the OAuth code which will get a URL from Twitter to display to the user. Additionally, after the user authenticates with the Twitter system by visiting the URL, the OA module will accept back a PIN number to complete the OAuth sign-in process. The module will also export this authentication for use with the rest of the application, specifically with the TW module.
+\end{itemize}
+\item[3. Twitter (TW) module] \hfill
+\begin{itemize}
+\item The TW module implements a system for interacting with the live Twitter system via their REST 1.1 API. The module will be responsible for retrieving the user's timeline as well as getting usernames from user IDs via the Twitter service. This module will accept Twitter API sessions started through the OA module, so it is not responsible for signing in or authentication. Some of the restrictions that occurs when implementing this system is the user is getting the timeline of the account, only the 20 last tweets will be displayed.
+\\
+\\
+
+\end{itemize}
+
+\item[4. Input/Output (IO) module] \hfill
+\begin{itemize}
+\item The IO module handles the zip file and filesystem features of the application, handling the loading of a tweet archive and handing off the list of tweets read from a file to other modules. Its main class is the TwitterIO class.
+\end{itemize}
+
+\item[5. SQLite Database (DB) module] \hfill
+\begin{itemize}
+\item The DB module takes as input tweets or lists of tweets for insertion into the application's private data store, as well as a system for querying the existing data and reporting lists of matching tweets based on several criteria. Its main class is the AbstractDB class.
+\end{itemize}
+
+\item[6. Twitter Analytics (TA) module] \hfill
+\begin{itemize}
+\item The TA module interacts with the DB module to produce useful analytics on the program's stored data. It will expose a number of methods that provide useful metrics and reports of the user's data.
+\end{itemize}
+\end{description}
+\end{document}

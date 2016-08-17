@@ -1,0 +1,140 @@
+\documentclass{article}
+\begin{document}
+\begin{center}
+\textbf{Computer Science 290 Team 3 Final Project}
+Requirements Document
+\end{center}
+\noindent
+\textbf{\Large Design Specification}
+\\
+For the final project, the TwitterAnalytics system implements five analysis tools on Twitter tweets by a user. The system must be able to perform these analyses on a .zip archive provided by the user, and also on their live timeline. It should store all of these tweets in a SQLite 3 database.. The tool will be required to authenticate with the Twitter REST API version 1.1 to connect a user with their most recent tweets. In addition, the system must implement a clearing functionality to reset the internal database, and must also allow the use of multiple zip file inputs.
+Additionally the system must implement a command line interface and parse these inputs using the JCommander software tool.
+\\
+\\
+\noindent
+\textbf{\Large System Behavior}
+\\
+Our system will implement a graphical user interface (GUI) and a command line interface for our users to interact with. The user interfaces will expose all system functionality as specified above, giving the user a large amount of control over their data and analytics.
+\\
+\\
+\\
+\\
+\textit{\Large 1. Command Line Interface}
+\\
+\\
+\\
+Usage:
+\\
+java -jar burdwatch.jar [OPTION...] [ANALYZER]
+\\
+Performs analysis on the available tweet data using the specified analyzer
+\\
+\\
+\parbox[t][3cm][t]{7cm}{\normalsize date\\
+\\
+\\
+pattern PATTERN\\
+\\
+\\
+ratio
+\\
+\\
+\\
+\\
+device
+\\
+\\
+\\
+most-retweeted} 
+\parbox[t][3cm][t]{7cm}{\normalsize Identifes the date on which the most tweets occurred\\
+\\
+Prints all tweets that contain the given pattern\\
+\\
+Prints the user most retweeted. Requires an Internet connection to retrieve the username, otherwise prints the ID number.\\ 
+\\
+Prints the ratio of retweets to non-retweet tweets\\
+\\
+Identifies and prints the device most used to post tweet\\}
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\noindent
+OPTIONS:
+
+\parbox[t][3cm][t]{7cm}{\normalsize -auth FILE\\
+\\
+\\
+\\
+-oa FILE\\
+\\
+\\
+-zip FILE\\
+\\
+\\
+--verbose -v
+\\
+\\
+\\
+--clear -c
+} 
+\parbox[t][3cm][t]{7cm}{\normalsize Connect to the Internet by performing \\Twitter authentication, and write token result to t he specified file for later\\
+\\
+Connect to the Internet using the OAuth file created previously by the -auth option\\
+\\
+Adds the contents of the specified \\Twitter archive file to the internal database.\\
+\\
+Verbose mode, which prints out \\technical errors messages\\
+\\
+Clears the database first before doing anything else}
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\textit{\Large 2. Analytics}
+\\
+The following twitter analytics will be supported by the system:
+\begin{itemize}
+\item All tweets that contain a specified character pattern
+\item The localized string representing the day of the week on which this user tweeted the most, formatted to the user's locale
+\item The user most commonly retweeted by this user
+\item The ratio of retweets to non-retweets
+\item The device most used by this user to send tweets
+\end{itemize} 
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+

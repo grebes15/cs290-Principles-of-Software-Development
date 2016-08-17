@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html><head>
+<title>git basics</title>
+<meta charset='utf-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link href='../css/big.css' rel='stylesheet'type='text/css'/>
+<script src='../css/big.js'></script>
+</head><body>
+
+<div><img src = "../images//i1.png"/><em class = "orange">setting up git</em><p>(and bitbucket)</p> <p>by team 3</p></div>
+<div>(this tutorial assumes you are using a UNIX system)</div>
+<div><em>step one:</em> creating a bitbucket account</div>
+<div> if you do not already have a bitbucket account, create one by visiting <em class = "green">bitbucket.org</em> and following the onscreen instructions</div>
+<div><em>step two:</em> installing Git</div>
+<div>check to see if git is installed by typing <em class = "green">$ which git</em> in a terminal window</div>
+<div>if git is not installed, install it using your package manager of choice</div>
+<div><em>step three:</em><br>SSH</div>
+<div>SSH is used to ensure that communication between your computer and the remote repository is secure</div>
+<div>if you do not have an SSH key, you must use the ssh-keygen command to generate one</div>
+<div>first, install SSH if it is not already installed (you can check using the command <em class = "green">$ which ssh</em>)</div>
+<div>once SSH is installed, generate keys using <em class = "green">$ ssh-keygen</em></div>
+<div>you must then edit the file <em class = "green">~/.ssh/config</em> using a text editor</div>
+<div>add an entry that looks like this: <em class = "green">Host bitbucket.org</br> 
+ IdentityFile ~/.ssh/privatekeyfile</em></div>
+<div> now, go to bitbucket.org, open the "Manage Account" page, and select "SSH Keys"</div>
+<div>open the file <em class = "green">~/.ssh/id_rsa.pub</em> in a text editor and paste its' contents into the Bitbucket web page</div>
+<div>verify that the setup is correct using the command <em class = "green">$ ssh -T git@bitbucket.org</em></div>
+<div><em>congratulations!</em> you are now ready to create repositories and start using Bitbucket!</div>
+
+</body>
+</html>
+

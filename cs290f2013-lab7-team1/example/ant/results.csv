@@ -1,0 +1,2 @@
+CurrentTotalRuntime;Testname;RuntimeToGetCoverage;RuntimeOriginal;KilledByTest;AnalyzedByTest;CoveredByTest;TotalKilled;TotalFailure;TotalException;TotalTimeout;LiveMutants;TotalAnalyzed
+2544;triangle.test.TestSuite$null;39;6;71;79;79;71;69;0;2;8;79

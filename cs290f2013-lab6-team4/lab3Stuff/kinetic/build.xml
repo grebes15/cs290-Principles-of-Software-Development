@@ -1,0 +1,189 @@
+<project xmlns:jacoco="antlib:org.jacoco.ant">
+	
+	<!-- SETUP VARIABLES AND PATHS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<property name="" value="" />
+
+	<property name="lib.dir" value="lib" />
+	<property name="src.dir" location="src/" />
+	<property name="build.dir" location="bin/" />
+	<property name="dist.dir" location="dist/" />
+	<property name="dist.name" value="Kinetic" />
+	<property name="config.logging.dir" value="config/logging" />
+	<property name="config.dir" value="config" />
+	<property name="version" value="1.0" />
+	<property name="CLASSPATH"   value="${DESTINATION}:lib/ccl.jar:lib/jhbasic.jar:lib/javancss.jar"/>
+
+	<!-- Load the log4j properties -->
+	<loadproperties>
+		<file file="config/logging/log4j.properties" />
+	</loadproperties>
+
+	<!-- The standard classpath for building the system -->
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}" includes="*.jar" />
+	</path>
+
+	<!-- The classpath for running the system -->
+	<path id="run.classpath">
+		<pathelement path="${build.dir}"/>
+		<fileset dir="${lib.dir}" includes="*.jar"/>
+	</path>
+
+	<!--The classpath for running a task and including the log4j properties-->
+	<path id="run.classpath.logging">
+		<pathelement path="${build.dir}"/>
+		<file file="${config.logging.dir}" />
+		<fileset dir="${lib.dir}" includes="*.jar"/>
+	</path>
+
+	<property name="result.dir" location="./bin" />
+	<property name="result.classes.dir" location="${result.dir}/" />
+	<property name="result.report.dir" location="${result.dir}/site/jacoco" />
+	<property name="result.exec.file" location="${result.dir}/jacoco.exec" />
+
+	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+		<classpath path="${lib.dir}/jacocoant.jar"/>
+	</taskdef>
+
+	<!-- BASIC TARGETS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- CLEANING TASK - "ant clean" -->
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+		<delete dir="${dist.dir}"/>
+		<delete dir="${result.dir}"/>
+	</target>
+	
+	<!-- COMPILING TASK - "ant compile" -->  
+	<target name="compile">
+		<mkdir dir="${build.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false" debug="true" debuglevel="vars,lines,source">
+			<classpath refid="build.classpath"/>
+			<compilerarg value="-Xlint:unchecked"/> 
+			<compilerarg value="-Xlint:deprecation"/> 
+		</javac>
+	</target>
+
+	<!-- RUNNING TARGETS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- RUNNING TASK - "ant run" -->
+	<target name="run">
+		<antcall target="kinetic">
+		</antcall>
+	</target>
+
+	<!-- RUNNING TASK - "ant kinetic" -->
+	<target name="kinetic">
+		<java fork="true" classname="edu.allegheny.kinetic.Driver" maxmemory="1024m">
+			<classpath refid="run.classpath" />
+            <arg value="${arg0}" />
+            <arg value="${arg1}" />
+            <!--<arg values="${arg1}" />-->
+		</java>
+	</target>
+
+
+	<!-- RUNNING TASK - "ant test" -->
+	<target name="test" depends="compile">
+		<junit fork="yes">
+			<test name="edu.allegheny.kinetic.AllTests" />
+			<classpath refid="run.classpath.logging" />
+			<formatter type="brief" usefile="false" />
+		</junit>
+	</target>
+
+	<!-- RUNNING TASK - "ant coveragetest" -->
+	<target name="coveragetest" depends="compile">
+		<jacoco:coverage destfile="${result.exec.file}">
+			<junit fork="yes" forkmode="once">
+				<test name="edu.allegheny.kinetic.AllTests" />
+				<classpath refid="run.classpath" />
+				<formatter type="brief" usefile="false" />
+			</junit>
+		</jacoco:coverage>
+	</target>
+	
+	<target name="taskdef">
+    <taskdef name="javancss"
+               classname="javancss.JavancssAntTask"
+               classpath="${CLASSPATH}"/>
+  </target>
+
+   <target name="javancss" depends="taskdef">
+      <javancss srcdir="src/edu"
+                includes="**/*.java"
+      	        ccnPerFuncMax="100"
+                generateReport="yes"/>
+   </target>
+
+	<!-- RUNNING TASK - "ant coverage" -->
+	<target name="coverage" depends="coveragetest">
+		<jacoco:report>
+			<executiondata>
+				<file file="${result.exec.file}" />
+			</executiondata>
+
+			<structure name="Kinetic Coverage Report">
+				<classfiles>
+					<fileset dir="${result.classes.dir}" />
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="${src.dir}" />
+				</sourcefiles>
+			</structure>
+			
+			<html destdir="${result.report.dir}/AllTests/" />
+			<csv destfile="${result.report.dir}/AllTests/report.csv" />
+			<xml destfile="${result.report.dir}/AllTests/report.xml" />
+		</jacoco:report>
+	</target>
+	
+	
+
+
+   <!--  Jdepend -->
+   <target name="jdepend">
+       <jdepend outputfile="bin/jdepend_info/jdepend-report.txt">
+        <exclude name="java.*"/>
+        <exclude name="javax.*"/>
+        <classespath>
+            <pathelement location="bin" />
+        </classespath>
+        <!--<classpath location="build" />-->
+    </jdepend>
+</target>
+
+	<target name="javac">
+      <mkdir  dir="${DESTINATION}"/>
+      <javac srcdir     ="src"
+             destdir    ="${DESTINATION}"
+             classpath  ="${CLASSPATH}"
+      	     encoding   ="ISO-8859-1"
+             debug      ="on"
+             deprecation="on"
+             optimize   ="off"
+             source     ="1.4"
+             excludes   ="**/RCS/*">
+      </javac>
+      <copy file="icons/javancssframe.gif"
+            todir="${DESTINATION}/javancss"/>
+   </target>
+
+<!-- JAVANCSS -->
+	<target name="jar" depends="javac">
+     <xmlproperty file="pom.xml" prefix="pom.xml" />
+     <jar destfile="lib/javancss.jar" basedir="target/classes">
+       <manifest>
+         <attribute name="Main-Class" value="javancss.Main" />
+         <attribute name="Class-Path" value="jhbasic.jar ccl.jar" />
+      	 <attribute name="Specification-Title" value="${pom.xml.project.name}" />
+       	 <attribute name="Specification-Version" value="${pom.xml.project.version}" />
+      	 <attribute name="Specification-Vendor" value="${pom.xml.project.organization.name}" />
+     	 <attribute name="Implementation-Title" value="${pom.xml.project.name}" />
+      	 <attribute name="Implementation-Version" value="${pom.xml.project.version}" />
+     	 <attribute name="Implementation-Vendor" value="${pom.xml.project.organization.name}" />
+       </manifest>
+     </jar>
+   </target>
+
+</project>

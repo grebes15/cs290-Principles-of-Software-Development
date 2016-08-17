@@ -1,0 +1,27 @@
+﻿Andreas Landgrebe
+Kara King
+Shane Regel
+Eric Weyant
+Dibyajyoti Mukherjee 
+
+Deliverable 1:
+Andreas Landgrebe:
+Printed the output for Deliverable 5
+Description of the output made from running the run.sh script for Deliverable 6
+
+Kara King:
+Description of the the target in the build.xml and order for mutation for Deliverable 2.
+Listing of the steps for the Demonstration of MAJOR for Deliverable 8.
+
+Dibyoajyoti Mukherjee:
+Extra Credit to explains how to use MAJOR to perform mutation analysis on a  particular project. Will use release planner to make sure that this demo of MAJOR will work properly.
+Made sure the main method is working properly.
+
+Eric Weyant:
+Write a main method in Triangle.java for demonstration purposes for Deliverable 3. 
+Print the output from running Triangle.java with the modified main verision for Deliverable 4.
+
+Shane Regel:
+Though commentary on one live and one killed source code mutant for Deliverable 7.
+
+ 

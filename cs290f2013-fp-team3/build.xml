@@ -1,0 +1,173 @@
+<project default="jar" xmlns:jacoco="antlib:org.jacoco.ant">
+	
+	<!-- SETUP VARIABLES AND PATHS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<path id="javancss.ant.task">
+        <pathelement location="lib/ccl.jar"/>
+        <pathelement location="lib/jhbasic.jar"/>
+        <pathelement location="lib/javancss.jar"/>
+   </path><property name="lib.dir" value="lib" />
+	<property name="src.dir" location="src/" />
+	<property name="build.dir" location="bin/" />
+	<property name="doc.dir" location="doc/" />
+	<property name="dist.dir" location="dist/" />
+	<property name="dist.name" value="BirdWatch" />
+	<property name="config.logging.dir" value="config/logging" />
+	<property name="config.dir" value="config" />
+	<property name="version" value="1.0" />
+
+	<!-- Load the log4j properties -->
+	<loadproperties>
+		<file file="config/logging/log4j.properties" />
+	</loadproperties>
+
+	<!-- The standard classpath for building the system -->
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}" includes="*.jar" />
+	</path>
+
+	<!-- The classpath for running the system -->
+	<path id="run.classpath">
+		<pathelement path="${build.dir}"/>
+		<fileset dir="${lib.dir}" includes="*.jar"/>
+	</path>
+
+	<!--The classpath for running a task and including the log4j properties-->
+	<path id="run.classpath.logging">
+		<pathelement path="${build.dir}"/>
+		<file file="${config.logging.dir}" />
+		<fileset dir="${lib.dir}" includes="*.jar"/>
+	</path>
+
+	<property name="result.dir" location="./bin" />
+	<property name="result.classes.dir" location="${result.dir}/" />
+	<property name="result.report.dir" location="${result.dir}/site/jacoco" />
+	<property name="result.exec.file" location="${result.dir}/jacoco.exec" />
+
+	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+		<classpath path="${lib.dir}/jacocoant.jar"/>
+	</taskdef>
+	
+	<taskdef name="javancss"
+            classname="javancss.JavancssAntTask"
+            classpathref="javancss.ant.task"/>
+
+	<!-- BASIC TARGETS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- CLEANING TASK - "ant clean" -->
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+		<delete dir="${dist.dir}"/>
+		<delete dir="${doc.dir}"/>
+		<delete dir="${result.dir}"/>
+	</target>
+	
+	<!-- COMPILING TASK - "ant compile" -->  
+	<target name="compile">
+		<mkdir dir="${build.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false" debug="true" debuglevel="vars,lines,source">
+			<classpath refid="build.classpath"/>
+			<compilerarg value="-Xlint:unchecked"/> 
+			<compilerarg value="-Xlint:deprecation"/> 
+		</javac>
+	</target>
+
+	<!-- COMPILING TASK - "ant jar" -->
+	<target name="jar" depends="clean,compile">
+		<jar destfile="${build.dir}/burdwatch.jar">
+			<fileset dir="${build.dir}" excludes="**/testing/**" />
+			<restrict>
+				<name name="**/*.class" />
+				<archives>
+					<zips>
+						<fileset dir="${lib.dir}">
+							<include name="**/*.jar" />
+							<exclude name="**/*jdepend*" />
+							<exclude name="**/*junit*" />
+							<exclude name="**/*javadoc*" />
+							<exclude name="**/*jacoco*" />
+							<exclude name="**/*javancss*" />
+						</fileset>
+					</zips>
+				</archives>
+			</restrict>
+			<manifest>
+				<attribute name="Main-Class"
+					value="edu.allegheny.twitteranalysis.ui.Main"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- RUNNING TARGETS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- RUNNING TASK - "ant test" -->
+	<target name="test" depends="compile">
+		<junit fork="yes">
+			<test name="edu.allegheny.twitteranalysis.testing.AllTests" />
+			<classpath refid="run.classpath.logging" />
+			<formatter type="brief" usefile="false" />
+		</junit>
+	</target>
+
+	<!-- RUNNING TASK - "ant javadoc" -->
+	<target name="javadoc">
+		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}">
+			<classpath>
+				<fileset dir="${lib.dir}" />
+			</classpath>
+		</javadoc>
+	</target>
+
+	<!-- RUNNING TASK - "ant coveragetest" -->
+	<target name="coveragetest" depends="compile">
+		<jacoco:coverage destfile="${result.exec.file}">
+			<junit fork="yes" forkmode="once">
+				<test name="edu.allegheny.twitteranalysis.testing.AllTests" />
+				<classpath refid="run.classpath" />
+				<formatter type="brief" usefile="false" />
+			</junit>
+		</jacoco:coverage>
+	</target>
+
+	<!-- RUNNING TASK - "ant coverage" -->
+	<target name="coverage" depends="clean,coveragetest">
+		<jacoco:report>
+			<executiondata>
+				<file file="${result.exec.file}" />
+			</executiondata>
+
+            <structure name="${dist.name} Coverage Report">
+				<classfiles>
+                    <fileset dir="${result.classes.dir}">
+                        <exclude name="**/ui/**"/>
+                    </fileset>
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="${src.dir}" />
+				</sourcefiles>
+			</structure>
+			
+			<html destdir="${result.report.dir}/AllTests/" />
+			<csv destfile="${result.report.dir}/AllTests/report.csv" />
+			<xml destfile="${result.report.dir}/AllTests/report.xml" />
+		</jacoco:report>
+	</target>
+
+	<!-- RUNNING TASK - "ant javancss" -->
+   <target name="javancss">
+      <javancss srcdir="${src.dir}"
+              generateReport="true"
+              outputfile="${build.dir}/javancss_metrics.out"
+              format="plain"
+              includes="**/*.java"/>
+   </target>
+	
+	<!-- RUNNING TASK - "ant jdepend" -->
+   <target name="jdepend">
+		<jdepend outputfile="${build.dir}/jdepend.txt">
+      	<classespath>
+        		<pathelement location="${build.dir}" />
+      	</classespath>
+      	<classpath location="${lib.dir/jdepend-2.9.1.jar}" />
+  		</jdepend>
+	</target>
+</project>

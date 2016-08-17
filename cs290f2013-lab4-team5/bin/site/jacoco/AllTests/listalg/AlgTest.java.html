@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AlgTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">listalg Coverage Report</a> &gt; <a href="index.html" class="el_package">listalg</a> &gt; <span class="el_source">AlgTest.java</span></div><h1>AlgTest.java</h1><pre class="source lang-java linenums">/**
+ * AlgTest.java
+ *
+ * Provides code for testng ListAlg.java.
+ *
+ * @author Matthew Hajduk
+ * @author Brian Graham
+ * @author Anton Kote
+ * @author Andreas Landgerbe
+ */
+
+package listalg;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import org.junit.Test;
+import java.util.List;
+import java.util.ArrayList;
+import static org.junit.Assert.*;
+
+<span class="fc" id="L21">public class AlgTest {</span>
+
+/*
+Test for boolean inputs. Tests generateList 
+in class ListAlg for 4 boolean inputs.
+*/
+	@Test
+    public void testBoolean4() {
+<span class="fc" id="L29">        String expected = new String(&quot;[[false, false, true, true], [true, false, false, true], [true, false, true, false], [false, true, false, true], [false, true, true, false], [false, false, true, true]]&quot;);</span>
+<span class="fc" id="L30">        ArrayList&lt;Boolean&gt; ArrayInput = new ArrayList&lt;Boolean&gt;();</span>
+<span class="fc" id="L31">        ArrayInput.add(false);</span>
+<span class="fc" id="L32">        ArrayInput.add(false);</span>
+<span class="fc" id="L33">        ArrayInput.add(true);</span>
+<span class="fc" id="L34">        ArrayInput.add(true);</span>
+<span class="fc" id="L35">        ArrayList actual = ListAlg.generateList(ArrayInput);</span>
+<span class="fc" id="L36">        assertEquals(expected, actual.toString());</span>
+<span class="fc" id="L37">    }</span>
+    
+/*
+Test for boolean inputs. Tests generateList 
+in class ListAlg for 8 boolean inputs.
+*/
+    @Test
+    public void testBoolean8() {
+<span class="fc" id="L45">        String expected = new String(&quot;[[false, false, true, true, false, false, true, true], [true, false, false, true, false, false, true, true], [true, false, true, false, false, false, true, true], [false, false, true, true, false, false, true, true], [false, false, true, true, false, false, true, true], [true, false, true, true, false, false, false, true], [true, false, true, true, false, false, true, false], [false, true, false, true, false, false, true, true], [false, true, true, false, false, false, true, true], [false, false, true, true, false, false, true, true], [false, false, true, true, false, false, true, true], [false, true, true, true, false, false, false, true], [false, true, true, true, false, false, true, false], [false, false, true, true, false, false, true, true], [false, false, false, true, true, false, true, true], [false, false, false, true, false, true, true, true], [false, false, true, true, false, false, true, true], [false, false, true, true, false, false, true, true], [false, false, true, false, true, false, true, true], [false, false, true, false, false, true, true, true], [false, false, true, true, false, false, true, true], [false, false, true, true, false, false, true, true], [false, false, true, true, false, false, true, true], [false, false, true, true, true, false, false, true], [false, false, true, true, true, false, true, false], [false, false, true, true, false, true, false, true], [false, false, true, true, false, true, true, false], [false, false, true, true, false, false, true, true]]&quot;);</span>
+<span class="fc" id="L46">        ArrayList&lt;Boolean&gt; ArrayInput = new ArrayList&lt;Boolean&gt;();</span>
+<span class="fc" id="L47">        ArrayInput.add(false);</span>
+<span class="fc" id="L48">        ArrayInput.add(false);</span>
+<span class="fc" id="L49">        ArrayInput.add(true);</span>
+<span class="fc" id="L50">        ArrayInput.add(true);</span>
+<span class="fc" id="L51">        ArrayInput.add(false);</span>
+<span class="fc" id="L52">        ArrayInput.add(false);</span>
+<span class="fc" id="L53">        ArrayInput.add(true);</span>
+<span class="fc" id="L54">        ArrayInput.add(true);</span>
+<span class="fc" id="L55">        ArrayList actual = ListAlg.generateList(ArrayInput);</span>
+<span class="fc" id="L56">        assertEquals(expected, actual.toString());</span>
+<span class="fc" id="L57">    }</span>
+    
+/*
+Test for String inputs. Tests generateList 
+in class ListAlg for 4 String inputs.
+*/
+	@Test
+    public void testString4() {
+<span class="fc" id="L65">        String expected = new String(&quot;[[b, a, c, d], [c, b, a, d], [d, b, c, a], [a, c, b, d], [a, d, c, b], [a, b, d, c]]&quot;);</span>
+<span class="fc" id="L66">        ArrayList&lt;String&gt; ArrayInput = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L67">        ArrayInput.add(&quot;a&quot;);</span>
+<span class="fc" id="L68">        ArrayInput.add(&quot;b&quot;);</span>
+<span class="fc" id="L69">        ArrayInput.add(&quot;c&quot;);</span>
+<span class="fc" id="L70">        ArrayInput.add(&quot;d&quot;);</span>
+<span class="fc" id="L71">        ArrayList actual = ListAlg.generateList(ArrayInput);</span>
+<span class="fc" id="L72">        assertEquals(expected, actual.toString());</span>
+<span class="fc" id="L73">    }</span>
+    
+/*
+Test for String inputs. Tests generateList 
+in class ListAlg for 8 String inputs.
+*/
+    	@Test
+    public void testString8() {
+<span class="fc" id="L81">        String expected = new String(&quot;[[b, a, c, d, ab, bc, cd, de], [c, b, a, d, ab, bc, cd, de], [d, b, c, a, ab, bc, cd, de], [ab, b, c, d, a, bc, cd, de], [bc, b, c, d, ab, a, cd, de], [cd, b, c, d, ab, bc, a, de], [de, b, c, d, ab, bc, cd, a], [a, c, b, d, ab, bc, cd, de], [a, d, c, b, ab, bc, cd, de], [a, ab, c, d, b, bc, cd, de], [a, bc, c, d, ab, b, cd, de], [a, cd, c, d, ab, bc, b, de], [a, de, c, d, ab, bc, cd, b], [a, b, d, c, ab, bc, cd, de], [a, b, ab, d, c, bc, cd, de], [a, b, bc, d, ab, c, cd, de], [a, b, cd, d, ab, bc, c, de], [a, b, de, d, ab, bc, cd, c], [a, b, c, ab, d, bc, cd, de], [a, b, c, bc, ab, d, cd, de], [a, b, c, cd, ab, bc, d, de], [a, b, c, de, ab, bc, cd, d], [a, b, c, d, bc, ab, cd, de], [a, b, c, d, cd, bc, ab, de], [a, b, c, d, de, bc, cd, ab], [a, b, c, d, ab, cd, bc, de], [a, b, c, d, ab, de, cd, bc], [a, b, c, d, ab, bc, de, cd]]&quot;);</span>
+<span class="fc" id="L82">        ArrayList&lt;String&gt; ArrayInput = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L83">        ArrayInput.add(&quot;a&quot;);</span>
+<span class="fc" id="L84">        ArrayInput.add(&quot;b&quot;);</span>
+<span class="fc" id="L85">        ArrayInput.add(&quot;c&quot;);</span>
+<span class="fc" id="L86">        ArrayInput.add(&quot;d&quot;);</span>
+<span class="fc" id="L87">        ArrayInput.add(&quot;ab&quot;);</span>
+<span class="fc" id="L88">        ArrayInput.add(&quot;bc&quot;);</span>
+<span class="fc" id="L89">        ArrayInput.add(&quot;cd&quot;);</span>
+<span class="fc" id="L90">        ArrayInput.add(&quot;de&quot;);</span>
+<span class="fc" id="L91">        ArrayList actual = ListAlg.generateList(ArrayInput);</span>
+<span class="fc" id="L92">        assertEquals(expected, actual.toString());</span>
+<span class="fc" id="L93">    }</span>
+    
+    /* Test for double inputs. Tests generateList in class ListAlg for 4 double inputs. */
+	@Test
+	public void testDouble4() {
+<span class="fc" id="L98">	String expected = new String(&quot;[[3.65, 2.57, 15.98, 100.53], [15.98, 3.65, 2.57, 100.53], [100.53, 3.65, 15.98, 2.57], [2.57, 15.98, 3.65, 100.53], [2.57, 100.53, 15.98, 3.65], [2.57, 3.65, 100.53, 15.98]]&quot;);</span>
+<span class="fc" id="L99">        ArrayList&lt;Double&gt; ArrayInput = new ArrayList&lt;Double&gt;();</span>
+<span class="fc" id="L100">        ArrayInput.add(2.57);</span>
+<span class="fc" id="L101">        ArrayInput.add(3.65);</span>
+<span class="fc" id="L102">        ArrayInput.add(15.98);</span>
+<span class="fc" id="L103">        ArrayInput.add(100.53);</span>
+<span class="fc" id="L104">        List commandLineTest = new ArrayList(ArrayInput);</span>
+<span class="fc" id="L105">        ArrayList actual = ListAlg.generateList(ArrayInput);</span>
+<span class="fc" id="L106">        assertEquals(expected, actual.toString());</span>
+<span class="fc" id="L107">    }</span>
+
+	/* Test for double inputs. Tests generateList in class ListAlg for 8 double inputs. */
+	@Test
+	public void testDouble8() {
+<span class="fc" id="L112">	String expected = new String(&quot;[[6.79, 1.97, 27.08, 1000.43, 18.3, 90.7, 59.39, 1349.9], [27.08, 6.79, 1.97, 1000.43, 18.3, 90.7, 59.39, 1349.9], [1000.43, 6.79, 27.08, 1.97, 18.3, 90.7, 59.39, 1349.9], [18.3, 6.79, 27.08, 1000.43, 1.97, 90.7, 59.39, 1349.9], [90.7, 6.79, 27.08, 1000.43, 18.3, 1.97, 59.39, 1349.9], [59.39, 6.79, 27.08, 1000.43, 18.3, 90.7, 1.97, 1349.9], [1349.9, 6.79, 27.08, 1000.43, 18.3, 90.7, 59.39, 1.97], [1.97, 27.08, 6.79, 1000.43, 18.3, 90.7, 59.39, 1349.9], [1.97, 1000.43, 27.08, 6.79, 18.3, 90.7, 59.39, 1349.9], [1.97, 18.3, 27.08, 1000.43, 6.79, 90.7, 59.39, 1349.9], [1.97, 90.7, 27.08, 1000.43, 18.3, 6.79, 59.39, 1349.9], [1.97, 59.39, 27.08, 1000.43, 18.3, 90.7, 6.79, 1349.9], [1.97, 1349.9, 27.08, 1000.43, 18.3, 90.7, 59.39, 6.79], [1.97, 6.79, 1000.43, 27.08, 18.3, 90.7, 59.39, 1349.9], [1.97, 6.79, 18.3, 1000.43, 27.08, 90.7, 59.39, 1349.9], [1.97, 6.79, 90.7, 1000.43, 18.3, 27.08, 59.39, 1349.9], [1.97, 6.79, 59.39, 1000.43, 18.3, 90.7, 27.08, 1349.9], [1.97, 6.79, 1349.9, 1000.43, 18.3, 90.7, 59.39, 27.08], [1.97, 6.79, 27.08, 18.3, 1000.43, 90.7, 59.39, 1349.9], [1.97, 6.79, 27.08, 90.7, 18.3, 1000.43, 59.39, 1349.9], [1.97, 6.79, 27.08, 59.39, 18.3, 90.7, 1000.43, 1349.9], [1.97, 6.79, 27.08, 1349.9, 18.3, 90.7, 59.39, 1000.43], [1.97, 6.79, 27.08, 1000.43, 90.7, 18.3, 59.39, 1349.9], [1.97, 6.79, 27.08, 1000.43, 59.39, 90.7, 18.3, 1349.9], [1.97, 6.79, 27.08, 1000.43, 1349.9, 90.7, 59.39, 18.3], [1.97, 6.79, 27.08, 1000.43, 18.3, 59.39, 90.7, 1349.9], [1.97, 6.79, 27.08, 1000.43, 18.3, 1349.9, 59.39, 90.7], [1.97, 6.79, 27.08, 1000.43, 18.3, 90.7, 1349.9, 59.39]]&quot;);</span>
+<span class="fc" id="L113">        ArrayList&lt;Double&gt; ArrayInput = new ArrayList&lt;Double&gt;();</span>
+<span class="fc" id="L114">        ArrayInput.add(1.97);</span>
+<span class="fc" id="L115">        ArrayInput.add(6.79);</span>
+<span class="fc" id="L116">        ArrayInput.add(27.08);</span>
+<span class="fc" id="L117">        ArrayInput.add(1000.43);</span>
+<span class="fc" id="L118">		ArrayInput.add(18.30);</span>
+<span class="fc" id="L119">        ArrayInput.add(90.70);</span>
+<span class="fc" id="L120">        ArrayInput.add(59.39);</span>
+<span class="fc" id="L121">        ArrayInput.add(1349.90);</span>
+<span class="fc" id="L122">        List commandLineTest = new ArrayList(ArrayInput);</span>
+<span class="fc" id="L123">        ArrayList actual = ListAlg.generateList(ArrayInput);</span>
+<span class="fc" id="L124">        assertEquals(expected, actual.toString());</span>
+<span class="fc" id="L125">    }</span>
+    
+    @Test
+    public void intTestShort() {
+        
+        //String[] strTest = {&quot;asdasdas&quot;,&quot;asd&quot;};
+        //ArrayList testInp = new ArrayList(ArrayUtils.toObject(intList));
+        //ArrayList testString = new ArrayList(Arrays.asList(strTest));
+<span class="fc" id="L133">        ArrayList testInp2 = new ArrayList();</span>
+<span class="fc" id="L134">        testInp2.add(1);</span>
+<span class="fc" id="L135">        testInp2.add(2);</span>
+<span class="fc" id="L136">        testInp2.add(3);</span>
+<span class="fc" id="L137">        testInp2.add(4);</span>
+<span class="fc" id="L138">        String expected = new String(&quot;[[2, 1, 3, 4], [3, 2, 1, 4], [4, 2, 3, 1], [1, 3, 2, 4], [1, 4, 3, 2], [1, 2, 4, 3]]&quot;);</span>
+<span class="fc" id="L139">        ArrayList actual =  ListAlg.generateList((ArrayList)testInp2);</span>
+        
+<span class="fc" id="L141">        assertEquals(expected, actual.toString());</span>
+<span class="fc" id="L142">    }</span>
+
+    @Test
+    public void intTestLong() {
+<span class="fc" id="L146">        ArrayList testInp2 = new ArrayList();</span>
+<span class="fc" id="L147">        testInp2.add(1);</span>
+<span class="fc" id="L148">        testInp2.add(2);</span>
+<span class="fc" id="L149">        testInp2.add(3);</span>
+<span class="fc" id="L150">        testInp2.add(4);</span>
+<span class="fc" id="L151">        testInp2.add(5);</span>
+<span class="fc" id="L152">        testInp2.add(6);</span>
+<span class="fc" id="L153">        testInp2.add(7);</span>
+<span class="fc" id="L154">        testInp2.add(8);</span>
+<span class="fc" id="L155">        String expected = new String(&quot;[[2, 1, 3, 4, 5, 6, 7, 8], [3, 2, 1, 4, 5, 6, 7, 8], [4, 2, 3, 1, 5, 6, 7, 8], [5, 2, 3, 4, 1, 6, 7, 8], [6, 2, 3, 4, 5, 1, 7, 8], [7, 2, 3, 4, 5, 6, 1, 8], [8, 2, 3, 4, 5, 6, 7, 1], [1, 3, 2, 4, 5, 6, 7, 8], [1, 4, 3, 2, 5, 6, 7, 8], [1, 5, 3, 4, 2, 6, 7, 8], [1, 6, 3, 4, 5, 2, 7, 8], [1, 7, 3, 4, 5, 6, 2, 8], [1, 8, 3, 4, 5, 6, 7, 2], [1, 2, 4, 3, 5, 6, 7, 8], [1, 2, 5, 4, 3, 6, 7, 8], [1, 2, 6, 4, 5, 3, 7, 8], [1, 2, 7, 4, 5, 6, 3, 8], [1, 2, 8, 4, 5, 6, 7, 3], [1, 2, 3, 5, 4, 6, 7, 8], [1, 2, 3, 6, 5, 4, 7, 8], [1, 2, 3, 7, 5, 6, 4, 8], [1, 2, 3, 8, 5, 6, 7, 4], [1, 2, 3, 4, 6, 5, 7, 8], [1, 2, 3, 4, 7, 6, 5, 8], [1, 2, 3, 4, 8, 6, 7, 5], [1, 2, 3, 4, 5, 7, 6, 8], [1, 2, 3, 4, 5, 8, 7, 6], [1, 2, 3, 4, 5, 6, 8, 7]]&quot;);</span>
+<span class="fc" id="L156">        ArrayList actual =  ListAlg.generateList(testInp2);</span>
+<span class="fc" id="L157">        assertEquals(expected, actual.toString());</span>
+<span class="fc" id="L158">    }</span>
+
+    @Test
+    public void motleyShort() {//Tests a short motley assortment of other types
+        //String[] strTest = {&quot;asdasdas&quot;,&quot;asd&quot;};
+        //ArrayList testInp = new ArrayList(ArrayUtils.toObject(intList));
+        //ArrayList testString = new ArrayList(Arrays.asList(strTest));
+<span class="fc" id="L165">        ArrayList testInp2 = new ArrayList();        </span>
+<span class="fc" id="L166">        ArrayList testInp3 = new ArrayList();</span>
+<span class="fc" id="L167">        testInp3.add(&quot;inString&quot;);</span>
+<span class="fc" id="L168">        testInp3.add(2);</span>
+<span class="fc" id="L169">        testInp2.add(true);</span>
+<span class="fc" id="L170">        testInp2.add(3.24);</span>
+<span class="fc" id="L171">        testInp2.add(&quot;String&quot;);</span>
+<span class="fc" id="L172">        testInp2.add(testInp3);</span>
+
+<span class="fc" id="L174">        String expected = new String(&quot;[[3.24, true, String, [inString, 2]], [String, 3.24, true, [inString, 2]], [[inString, 2], 3.24, String, true], [true, String, 3.24, [inString, 2]], [true, [inString, 2], String, 3.24], [true, 3.24, [inString, 2], String]]&quot;);</span>
+<span class="fc" id="L175">        ArrayList actual =  ListAlg.generateList((ArrayList)testInp2);</span>
+        //System.out.println(actual.toString());
+<span class="fc" id="L177">        assertEquals(expected, actual.toString());</span>
+<span class="fc" id="L178">    }</span>
+
+    @Test
+    public void motleyLong() {//Tests a long motley assortment of other types
+<span class="fc" id="L182">        ArrayList testInp2 = new ArrayList();      </span>
+<span class="fc" id="L183">        ArrayList testInp3 = new ArrayList();</span>
+<span class="fc" id="L184">         ArrayList testInp4 = new ArrayList();</span>
+<span class="fc" id="L185">        testInp3.add(&quot;inString&quot;);</span>
+<span class="fc" id="L186">        testInp3.add(2);</span>
+<span class="fc" id="L187">        testInp2.add(true);</span>
+<span class="fc" id="L188">        testInp2.add(3.24);</span>
+<span class="fc" id="L189">        testInp2.add(&quot;String&quot;);</span>
+<span class="fc" id="L190">        testInp2.add(testInp3);</span>
+
+<span class="fc" id="L192">         testInp4.add(&quot;inString2&quot;);</span>
+<span class="fc" id="L193">        testInp4.add(3);</span>
+<span class="fc" id="L194">        testInp2.add(false);</span>
+<span class="fc" id="L195">        testInp2.add(6.24);</span>
+<span class="fc" id="L196">        testInp2.add(&quot;String2&quot;);</span>
+<span class="fc" id="L197">        testInp2.add(testInp4);</span>
+
+<span class="fc" id="L199">        String expected = new String(&quot;[[3.24, true, String, [inString, 2], false, 6.24, String2, [inString2, 3]], [String, 3.24, true, [inString, 2], false, 6.24, String2, [inString2, 3]], [[inString, 2], 3.24, String, true, false, 6.24, String2, [inString2, 3]], [false, 3.24, String, [inString, 2], true, 6.24, String2, [inString2, 3]], [6.24, 3.24, String, [inString, 2], false, true, String2, [inString2, 3]], [String2, 3.24, String, [inString, 2], false, 6.24, true, [inString2, 3]], [[inString2, 3], 3.24, String, [inString, 2], false, 6.24, String2, true], [true, String, 3.24, [inString, 2], false, 6.24, String2, [inString2, 3]], [true, [inString, 2], String, 3.24, false, 6.24, String2, [inString2, 3]], [true, false, String, [inString, 2], 3.24, 6.24, String2, [inString2, 3]], [true, 6.24, String, [inString, 2], false, 3.24, String2, [inString2, 3]], [true, String2, String, [inString, 2], false, 6.24, 3.24, [inString2, 3]], [true, [inString2, 3], String, [inString, 2], false, 6.24, String2, 3.24], [true, 3.24, [inString, 2], String, false, 6.24, String2, [inString2, 3]], [true, 3.24, false, [inString, 2], String, 6.24, String2, [inString2, 3]], [true, 3.24, 6.24, [inString, 2], false, String, String2, [inString2, 3]], [true, 3.24, String2, [inString, 2], false, 6.24, String, [inString2, 3]], [true, 3.24, [inString2, 3], [inString, 2], false, 6.24, String2, String], [true, 3.24, String, false, [inString, 2], 6.24, String2, [inString2, 3]], [true, 3.24, String, 6.24, false, [inString, 2], String2, [inString2, 3]], [true, 3.24, String, String2, false, 6.24, [inString, 2], [inString2, 3]], [true, 3.24, String, [inString2, 3], false, 6.24, String2, [inString, 2]], [true, 3.24, String, [inString, 2], 6.24, false, String2, [inString2, 3]], [true, 3.24, String, [inString, 2], String2, 6.24, false, [inString2, 3]], [true, 3.24, String, [inString, 2], [inString2, 3], 6.24, String2, false], [true, 3.24, String, [inString, 2], false, String2, 6.24, [inString2, 3]], [true, 3.24, String, [inString, 2], false, [inString2, 3], String2, 6.24], [true, 3.24, String, [inString, 2], false, 6.24, [inString2, 3], String2]]&quot;);</span>
+<span class="fc" id="L200">        ArrayList actual =  ListAlg.generateList(testInp2);</span>
+        //System.out.println(actual.toString());
+<span class="fc" id="L202">        assertEquals(expected, actual.toString());</span>
+<span class="fc" id="L203">    }</span>
+
+    @Test
+    public void ArrayListShort() {//Tests a short arraylist of arraylist
+        //String[] strTest = {&quot;asdasdas&quot;,&quot;asd&quot;};
+        //ArrayList testInp = new ArrayList(ArrayUtils.toObject(intList));
+        //ArrayList testString = new ArrayList(Arrays.asList(strTest));
+<span class="fc" id="L210">        ArrayList testInp = new ArrayList();       </span>
+<span class="fc" id="L211">        ArrayList testInp1 = new ArrayList();</span>
+<span class="fc" id="L212">        testInp1.add(1);</span>
+<span class="fc" id="L213">        testInp.add(testInp1);</span>
+<span class="fc" id="L214">      ArrayList testInp2 = new ArrayList();</span>
+<span class="fc" id="L215">      testInp2.add(2);</span>
+<span class="fc" id="L216">      testInp.add(testInp2);</span>
+<span class="fc" id="L217">      ArrayList testInp3 = new ArrayList();</span>
+<span class="fc" id="L218">      testInp3.add(3);</span>
+<span class="fc" id="L219">      testInp.add(testInp3);</span>
+<span class="fc" id="L220">      ArrayList testInp4 = new ArrayList();</span>
+<span class="fc" id="L221">      testInp4.add(4);</span>
+<span class="fc" id="L222">      testInp.add(testInp4);</span>
+<span class="fc" id="L223">        String expected = new String(&quot;[[[2], [1], [3], [4]], [[3], [2], [1], [4]], [[4], [2], [3], [1]], [[1], [3], [2], [4]], [[1], [4], [3], [2]], [[1], [2], [4], [3]]]&quot;);</span>
+<span class="fc" id="L224">        ArrayList actual =  ListAlg.generateList((ArrayList)testInp);</span>
+        //System.out.println(actual.toString());
+<span class="fc" id="L226">        assertEquals(expected, actual.toString());</span>
+<span class="fc" id="L227">    }</span>
+
+    @Test
+    public void ArraylistLong() {//Tests a long arraylist of arraylist
+<span class="fc" id="L231">        ArrayList testInp = new ArrayList();       </span>
+<span class="fc" id="L232">        ArrayList testInp1 = new ArrayList();</span>
+<span class="fc" id="L233">        testInp1.add(1);</span>
+<span class="fc" id="L234">        testInp.add(testInp1);</span>
+<span class="fc" id="L235">      ArrayList testInp2 = new ArrayList();</span>
+<span class="fc" id="L236">      testInp2.add(2);</span>
+<span class="fc" id="L237">      testInp.add(testInp2);</span>
+<span class="fc" id="L238">      ArrayList testInp3 = new ArrayList();</span>
+<span class="fc" id="L239">      testInp3.add(3);</span>
+<span class="fc" id="L240">      testInp.add(testInp3);</span>
+<span class="fc" id="L241">      ArrayList testInp4 = new ArrayList();</span>
+<span class="fc" id="L242">      testInp4.add(4);</span>
+<span class="fc" id="L243">      testInp.add(testInp4);</span>
+<span class="fc" id="L244">      ArrayList testInp5 = new ArrayList();</span>
+<span class="fc" id="L245">        testInp5.add(5);</span>
+<span class="fc" id="L246">        testInp.add(testInp5);</span>
+<span class="fc" id="L247">      ArrayList testInp6 = new ArrayList();</span>
+<span class="fc" id="L248">      testInp6.add(6);</span>
+<span class="fc" id="L249">      testInp.add(testInp6);</span>
+<span class="fc" id="L250">      ArrayList testInp7 = new ArrayList();</span>
+<span class="fc" id="L251">      testInp7.add(7);</span>
+<span class="fc" id="L252">      testInp.add(testInp7);</span>
+<span class="fc" id="L253">      ArrayList testInp8 = new ArrayList();</span>
+<span class="fc" id="L254">      testInp8.add(8);</span>
+<span class="fc" id="L255">      testInp.add(testInp8);</span>
+
+<span class="fc" id="L257">        String expected = new String(&quot;[[[2], [1], [3], [4], [5], [6], [7], [8]], [[3], [2], [1], [4], [5], [6], [7], [8]], [[4], [2], [3], [1], [5], [6], [7], [8]], [[5], [2], [3], [4], [1], [6], [7], [8]], [[6], [2], [3], [4], [5], [1], [7], [8]], [[7], [2], [3], [4], [5], [6], [1], [8]], [[8], [2], [3], [4], [5], [6], [7], [1]], [[1], [3], [2], [4], [5], [6], [7], [8]], [[1], [4], [3], [2], [5], [6], [7], [8]], [[1], [5], [3], [4], [2], [6], [7], [8]], [[1], [6], [3], [4], [5], [2], [7], [8]], [[1], [7], [3], [4], [5], [6], [2], [8]], [[1], [8], [3], [4], [5], [6], [7], [2]], [[1], [2], [4], [3], [5], [6], [7], [8]], [[1], [2], [5], [4], [3], [6], [7], [8]], [[1], [2], [6], [4], [5], [3], [7], [8]], [[1], [2], [7], [4], [5], [6], [3], [8]], [[1], [2], [8], [4], [5], [6], [7], [3]], [[1], [2], [3], [5], [4], [6], [7], [8]], [[1], [2], [3], [6], [5], [4], [7], [8]], [[1], [2], [3], [7], [5], [6], [4], [8]], [[1], [2], [3], [8], [5], [6], [7], [4]], [[1], [2], [3], [4], [6], [5], [7], [8]], [[1], [2], [3], [4], [7], [6], [5], [8]], [[1], [2], [3], [4], [8], [6], [7], [5]], [[1], [2], [3], [4], [5], [7], [6], [8]], [[1], [2], [3], [4], [5], [8], [7], [6]], [[1], [2], [3], [4], [5], [6], [8], [7]]]&quot;);</span>
+<span class="fc" id="L258">        ArrayList actual =  ListAlg.generateList(testInp);</span>
+        //System.out.println(actual.toString());
+<span class="fc" id="L260">        assertEquals(expected, actual.toString());</span>
+<span class="fc" id="L261">    }</span>
+    
+    
+    @Test
+    public void testIO() {
+    	// Intercept console output
+<span class="fc" id="L267">    	ByteArrayOutputStream output = new ByteArrayOutputStream(100);</span>
+<span class="fc" id="L268">    	System.setOut(new PrintStream(output));</span>
+
+<span class="fc" id="L270">    	String[] args = {&quot;g&quot;, &quot;20&quot;, &quot;q&quot;, &quot;3&quot;};</span>
+
+<span class="fc" id="L272">		ListAlgIO.main(args);</span>
+<span class="fc" id="L273">		assertEquals(output.toString(), &quot;List generated from command line inputs: [[20, g, q, 3], [q, 20, g, 3], [3, 20, q, g], [g, q, 20, 3], [g, 3, q, 20], [g, 20, 3, q]]\n&quot;);</span>
+<span class="fc" id="L274">    }</span>
+    
+    @Test
+    public void testConstruct() {
+<span class="fc" id="L278">		ListAlg l = new ListAlg();</span>
+        
+<span class="fc" id="L280">        assertNotNull(l);</span>
+<span class="fc" id="L281">    }</span>
+
+	@Test
+    public void testConstruct2() {
+<span class="fc" id="L285">		AllTests a = new AllTests();</span>
+        
+<span class="fc" id="L287">        assertNotNull(a);</span>
+<span class="fc" id="L288">    }</span>
+    
+    @Test
+    public void testConstruct3() {
+<span class="fc" id="L292">		ListAlgIO ll = new ListAlgIO();</span>
+        
+<span class="fc" id="L294">        assertNotNull(ll);</span>
+<span class="fc" id="L295">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.9.201207211933</span></div></body></html>

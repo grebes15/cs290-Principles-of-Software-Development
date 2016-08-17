@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html><head>
+<title>Computer Science 290 Fall 2013 LAB 1</title>
+<meta charset='utf-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link href='../css/big.css' rel='stylesheet'type='text/css'/>
+<script src='../css/big.js'></script>
+</head><body>
+
+<div><em>Computer Science 290 Lab 1</em> <em class="green">Fall</em> 2013</div>
+
+<div>Group 4: Matthew Hajduk, Eric Weyant, Anton Kotelyanskii</div>
+
+<div><em>Configuring</em> <em class="scarlet">BitBucket</em></div>
+
+<DIV>ssh keygen generated for security</DIV>
+<div><img src="../screenshots/ssh-keygen.png"/></div>
+
+<DIV>add ssh key, verified on BitBucket</DIV>
+<div><img src="../screenshots/add ssh key.png"/></div>
+
+<DIV>added key to BitBucket</DIV>
+<div><img src="../screenshots/added key.png"/></div>
+
+<div><em>Git</em> <em class="sky">commands</em></div>
+
+<DIV><em>git init</em> <em class="scarlet">This command is used to initialize a git repository. It will create a folder called .git that contains information on the repository. The command should return a short message reporting success or failure.</em></DIV>
+<div><img src="../screenshots/gitInit.png"/></div>
+
+<DIV>git status - This command returns a list of files have been modified since the last commit, push, or pull.</DIV>
+<div><img src="../screenshots/git status.png"/></div>
+
+<DIV>git add - This command adds files to the repository; these files will now be committed and pushed. It should return an output of which files have or haven't been successfuly added.</DIV>
+<div><img src="../screenshots/gitadd.png"/></div>
+
+<DIV>git commit -  This command saves a "snapshot" of all the files you have added to the repository. It opens an editing environment for you to write a message. Alternatively, you can run it with the -m "comment" function, which allows you to write the message from the command line. The command should return a short message reporting success or failure, as well as the user name, and a short overview of the changes since the last commit.</DIV>
+<div><img src="../screenshots/gitcommit.png"/></div>
+
+<DIV>git push - This command uploads your commit to the global repository on BitBucket so others can pull it. The command should return a short message reporting success or failure, as well as the number of files, and differences between the version that was there and the version you uploaded.</DIV>
+<div><img src="../screenshots/gitpush.png"/></div>
+
+<DIV>git pull - This command downloads the latest version of the global git repository to your repository. The command should return a short message reporting success or failure, as well as the number of files, and differences between the version that you had before and the version you downloaded.</DIV>
+<div><img src="../screenshots/git pull.png"/></div>
+
+<DIV>git diff - This command shows the difference between your current local version and a previous commit. Add the previous version name or number to the end.</DIV>
+<div><img src="../screenshots/gitdiff.png"/></div>
+
+<div><img src="../screenshots/thatsall.gif"/></div>
+
+</body>
+</html>
+

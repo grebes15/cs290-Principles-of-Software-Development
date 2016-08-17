@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{graphicx}
+\begin{document}
+\noindent
+Andreas Landgrebe
+\\
+Matt Hajduk
+\\
+Adam Wechter
+\\
+Brian Graham
+\\
+Shane Regel
+\\
+Laboratory Assignment \#5 Team \#4 
+\\
+\\
+\begin{center}
+\textbf{Descriptions of Javancss}
+\end{center}
+In this laboratory assignment, one of the tasks is to learn and be able to use javaNCSS. This tool is able to go through two stander source code metrics. It can either go through the classes of a file or it can go through the individual functions in a specific class. We were able to see that one of the numbers that it will generate will be the Cyclomatic Complexity Number (CCN). This number shows the software measurement of the complexity of a certain class of function. This number is relevant in the context of that it is able to explain the how many for loops are nested together to explain the complexity of it and to see if they are any errors in the code. It is also essential to determine the complexity of each function that is in a class. Using javancss, one is able to determine the maximum and average Cyclomatic Complexity Number of all of the functions in a class. The Cyclomatic Complexity Number is an important number in the context of writing test cases. When locating at the CCN of all of the functions in the class, when one sees that the CCN is greater at one of the functions in a certain class, one would need to write more test suites for a higher CCN and fewer test suites will be written for the functions that have a lower CCN. Another observations that can be used by lookingh at the Cyclomatic Complexity Number is reducing errors in source code. When one can see the the complexity of each function in the class, one can also see that if it is a complex function with a high CCN, one is able to use this number as a debugging tool to be able to detect errors in the code. Another number that JavaNCSS will calculate will be the NCSS(Non-Commented Source Statements). This metric will go through the file system and check in the system how much source code that is non commented and count it.      
+
+\begin{center}
+\textbf{Equations}
+\end{center}
+The equation to look into when learning about javaNCSS is to look into how the Cyclomatic Complexity Number is being processed. The equation will go through the number of edges, nodes, and connected components of a class file. The equation is as follows, M E - N + 2C. E represents the number of edges, N represents the number of nodes, and  C represented the number of connected components which is also called the exit nodes in a given graph. The CCN is typically displayed as a control flow graph to be able to display the specific if statements, for loop, and while loops that are in a function of a class. Another number that JavaNCSS will calculate will be the NCSS(Non-Commented Source Statements). The equations will just be that it will be through the file system and see if a specific line of code is commented or not. If it is commented, then it is not set in the counter. If the line of code is non-commented, then it will be counted in and will be added.
+
+   
+\end{document}

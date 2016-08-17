@@ -1,0 +1,121 @@
+﻿kingk2@aldenv186:~/cs290/lab7/cs290f2013-lab7-team1/
+	example/ant$ ./run.sh
+
+Compiling and mutating project
+(ant -Dmutation="=../mml/tutorial.mml.bin" clean compile)
+
+Buildfile: /home/k/kingk2/cs290/lab7/cs290f2013-lab7-team1/
+	example/ant/build.xml
+
+clean:
+ [delete] Deleting directory /home/k/kingk2/cs290/lab7/
+	cs290f2013-lab7-team1/example/ant/bin
+
+init:
+ [mkdir] Created dir: /home/k/kingk2/cs290/lab7/
+	cs290f2013-lab7-team1/example/ant/bin
+
+compile:
+ [javac] Compiling 1 source file to /home/k/kingk2/cs290/lab7/
+	cs290f2013-lab7-team1/example/ant/bin
+ [javac] #Generated Mutants: 79 (22 ms)
+
+BUILD SUCCESSFUL
+Total time: 1 second
+
+Compiling tests
+(ant compile.tests)
+
+Buildfile: /home/k/kingk2/cs290/lab7/cs290f2013-lab7-team1/example/
+	ant/build.xml
+
+init:
+
+compile:
+
+compile.tests:
+ [javac] Compiling 1 source file to /home/k/kingk2/cs290/lab7/
+	cs290f2013-lab7-team1/example/ant/bin
+
+BUILD SUCCESSFUL
+Total time: 1 second
+
+Run tests without mutation analysis
+(ant test)
+Buildfile: /home/k/kingk2/cs290/lab7/cs290f2013-lab7-team1/
+	example/ant/build.xml
+
+test:
+ [echo] Running unit tests ...
+ [junit] Running triangle.test.TestSuite
+ [junit] Testsuite: triangle.test.TestSuite
+ [junit] Tests run: 33, Failures: 0, Errors: 0, Time elapsed: 0.01 sec
+ [junit] Tests run: 33, Failures: 0, Errors: 0, Time elapsed: 0.01 sec
+ [junit]
+ [junit] Testcase: test6 took 0.005 sec
+ [junit] Testcase: test7 took 0.001 sec
+ [junit] Testcase: test8 took 0 sec
+ [junit] Testcase: test1 took 0 sec
+ [junit] Testcase: test24 took 0 sec
+ [junit] Testcase: test25 took 0 sec
+ [junit] Testcase: test26 took 0 sec
+ [junit] Testcase: test27 took 0 sec
+ [junit] Testcase: test28 took 0 sec
+ [junit] Testcase: test29 took 0 sec
+ [junit] Testcase: test30 took 0 sec
+ [junit] Testcase: test31 took 0 sec
+ [junit] Testcase: test32 took 0 sec
+ [junit] Testcase: test33 took 0 sec
+ [junit] Testcase: test16 took 0 sec
+ [junit] Testcase: test17 took 0 sec
+ [junit] Testcase: test18 took 0 sec
+ [junit] Testcase: test19 took 0 sec
+ [junit] Testcase: test20 took 0 sec
+ [junit] Testcase: test21 took 0 sec
+ [junit] Testcase: test22 took 0 sec
+ [junit] Testcase: test23 took 0 sec
+ [junit] Testcase: test4 took 0 sec
+ [junit] Testcase: test5 took 0 sec
+ [junit] Testcase: test2 took 0 sec
+ [junit] Testcase: test3 took 0 sec
+ [junit] Testcase: test9 took 0 sec
+ [junit] Testcase: test10 took 0 sec
+ [junit] Testcase: test11 took 0 sec
+ [junit] Testcase: test12 took 0 sec
+ [junit] Testcase: test13 took 0 sec
+ [junit] Testcase: test14 took 0 sec
+ [junit] Testcase: test15 took 0 sec
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+Run tests with mutation analysis
+(ant mutation.test)
+Buildfile: /home/k/kingk2/cs290/lab7/cs290f2013-lab7-team1/
+	example/ant/build.xml
+
+mutation.test:
+ [echo] Running mutation analysis ...
+ [junit] MAJOR: Mutation analysis enabled
+ [junit] MAJOR: ------------------------------------------------------------
+ [junit] MAJOR: Run 1 ordered test to verify independency
+ [junit] MAJOR: ------------------------------------------------------------
+ [junit] MAJOR: Preprocessing took 0.09 seconds
+ [junit] MAJOR: ------------------------------------------------------------
+ [junit] MAJOR: Mutants covered: 79
+ [junit] MAJOR: ------------------------------------------------------------
+ [junit] MAJOR: Run mutation analysis with 1 individual test
+ [junit] MAJOR: ------------------------------------------------------------
+ [junit] MAJOR: 1/1 - triangle.test.TestSuite$null (14ms / 79):
+ [junit] MAJOR: 1780 (70 / 79 / 79) -> AVG-RTPM: 22ms
+ [junit] MAJOR: Mutants killed / live: 70 (70-0-0) / 9
+ [junit] MAJOR: ------------------------------------------------------------
+ [junit] MAJOR: Summary:
+ [junit] MAJOR:
+ [junit] MAJOR: Total runtime: 1.8 seconds
+ [junit] MAJOR: Mutation score: 88.61%
+ [junit] MAJOR: Mutant executions: 79
+ [junit] MAJOR: Mutants killed / live: 70 (70-0-0) / 9
+ [junit] MAJOR: ------------------------------------------------------------
+ [junit] MAJOR: Export runtime results (to results.csv)
+ [junit] MAJOR: Export mutant kill details (to kill.csv)

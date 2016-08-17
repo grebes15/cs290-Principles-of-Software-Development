@@ -1,0 +1,7 @@
+﻿What every body is doing:
+
+Shane Regel: Deliverable 7
+Andreas Landgrebe: Deliverable 1, 5, 6
+Eric Weyant: Deliverable 3, and 4
+Kara King: Deliverable 2, and Deliverable 8
+Dibyo: Extra Credit, and have the main method working

@@ -1,0 +1,23 @@
+/***************************************************
+Matt Hajduk
+Anton K
+Brian Graham
+Andreas L
+****************************************************/
+
+package listalg;
+
+import java.util.ArrayList;
+import java.util.Scanner; 
+import java.util.*;
+
+public class ListAlgIO{
+
+	public static void main(String[] ArrayInput){
+
+	List commandLineTest = new ArrayList(Arrays.asList(ArrayInput));
+	System.out.println("List generated from command line inputs: " + ListAlg.generateList((ArrayList) commandLineTest));
+	ArrayList<ArrayList> outputList = ListAlg.generateList((ArrayList) tyrol);
+	System.out.println("List generated from 1 (as an int), 'baldib' (as a String), tyrolInput (as an ArrayList cosisnting of " +tyrolInput.toString() +") and .234235 (as a float) : " + outputList.toString());
+	}
+}

@@ -1,0 +1,98 @@
+Usage:
+java -jar burdwatch.jar [OPTION...] [ANALYZER]
+Performs analysis on the available tweet data using the
+specified analyzer.
+
+ANALYZERS:
+date                            Identifies the date on which the
+                                most tweets occurred
+
+pattern  PATTERN                Prints all tweets that contain the
+                                given pattern
+
+ratio                           Prints the ratio of retweets to
+                                non-retweet tweets
+
+device                          Identifies and prints the device
+                                most used to post tweets
+
+OPTIONS:
+-auth FILE                      Connect to the Internet by
+                                performing Twitter authentication,
+                                and write token result to the
+                                specified file for later.
+
+-oa FILE                        Connect to the Internet using the
+                                OAuth file created previously by
+                                the -auth option.
+
+-zip FILE                       Adds the contents of the specified
+                                Twitter archive file to the
+                                internal database.
+
+--verbose                       Verbose mode, which prints out
+     -v                         technical error messages.
+
+--clear                         Clears the database first before
+     -c                         doing anything else.
+
+
+================================
+Compiling Burdwatch source code:
+================================
+
+Burdwatch comes with an Ant compatible build.xml, so you can
+build it using Ant or import the source tree into Eclipse as
+a project by using the "Import from existing Ant buildfile"
+target from within Eclipse. Presumably an IDE which supports
+a similar feature would work as well, but this has only been
+tested using Eclipse.
+
+Ant targets:
+ant:                             Alias for ant jar
+
+ant clean:                       Removes the build directory(bin)
+
+ant compile:                     Compiles all source code(src)
+
+ant jar                          Builds the jar
+
+ant test                         Runs all of the JUnit test cases 
+                                 from the testing package
+
+ant javadoc                      Compiles all javadoc documentation
+                                 to the doc directory
+
+ant coveragetest                 Runs all of the JUnit test cases,
+                                 and enhances them with jacoco
+                                 coverage
+
+ant coverage                     Produces a jacoco coverage report
+                                 based on the coverage test
+
+ant javancss                     Produces a JavaNCSS report on all
+                                 source files
+
+ant jdepend                      Produces a JDepend report on all
+                                 source files.  NOTE: This target
+                                 will not work properly unless
+                                 the JDepend jar is in the user's
+                                 classpath
+
+
+================
+A note on tests:
+================
+
+The database and twitter analytics methods are thoroughly
+tested with JUnit test suites, achieving 82% and 98% coverage
+respectively.  The limit on coverage for the database module
+is a large number of unreachable catch blocks.
+
+The remaining modules are untested through JUnit, due to their
+dependency on Twitter authentication.  Instead they are simply
+tested manually, through exhaustive execution of the execution
+jar.
+                            
+
+

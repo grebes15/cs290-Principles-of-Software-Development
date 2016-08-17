@@ -1,0 +1,127 @@
+<project xmlns:jacoco="antlib:org.jacoco.ant">
+	
+	<!-- SETUP VARIABLES AND PATHS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<property name="" value="" />
+
+	<property name="lib.dir" value="lib" />
+	<property name="src.dir" location="src/" />
+	<property name="build.dir" location="bin/" />
+	<property name="dist.dir" location="dist/" />
+	<property name="dist.name" value="Kinetic" />
+	<property name="config.logging.dir" value="config/logging" />
+	<property name="config.dir" value="config" />
+	<property name="version" value="1.0" />
+
+	<!-- Load the log4j properties -->
+	<loadproperties>
+		<file file="config/logging/log4j.properties" />
+	</loadproperties>
+
+	<!-- The standard classpath for building the system -->
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}" includes="*.jar" />
+	</path>
+
+	<!-- The classpath for running the system -->
+	<path id="run.classpath">
+		<pathelement path="${build.dir}"/>
+		<fileset dir="${lib.dir}" includes="*.jar"/>
+	</path>
+
+	<!--The classpath for running a task and including the log4j properties-->
+	<path id="run.classpath.logging">
+		<pathelement path="${build.dir}"/>
+		<file file="${config.logging.dir}" />
+		<fileset dir="${lib.dir}" includes="*.jar"/>
+	</path>
+
+	<property name="result.dir" location="./bin" />
+	<property name="result.classes.dir" location="${result.dir}/" />
+	<property name="result.report.dir" location="${result.dir}/site/jacoco" />
+	<property name="result.exec.file" location="${result.dir}/jacoco.exec" />
+
+	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+		<classpath path="${lib.dir}/jacocoant.jar"/>
+	</taskdef>
+
+	<!-- BASIC TARGETS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- CLEANING TASK - "ant clean" -->
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+		<delete dir="${dist.dir}"/>
+		<delete dir="${result.dir}"/>
+	</target>
+	
+	<!-- COMPILING TASK - "ant compile" -->  
+	<target name="compile">
+		<mkdir dir="${build.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false" debug="true" debuglevel="vars,lines,source">
+			<classpath refid="build.classpath"/>
+			<compilerarg value="-Xlint:unchecked"/> 
+			<compilerarg value="-Xlint:deprecation"/> 
+		</javac>
+	</target>
+
+	<!-- RUNNING TARGETS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- RUNNING TASK - "ant run" -->
+	<target name="run">
+		<antcall target="kinetic">
+		</antcall>
+	</target>
+
+	<!-- RUNNING TASK - "ant kinetic" -->
+	<target name="kinetic">
+		<java fork="true" classname="edu.allegheny.kinetic.Driver" maxmemory="1024m">
+			<classpath refid="run.classpath" />
+            <arg value="${arg0}" />
+            <arg value="${arg1}" />
+            <!--<arg values="${arg1}" />-->
+		</java>
+	</target>
+
+
+	<!-- RUNNING TASK - "ant test" -->
+	<target name="test" depends="compile">
+		<junit fork="yes">
+			<test name="edu.allegheny.kinetic.AllTests" />
+			<classpath refid="run.classpath.logging" />
+			<formatter type="brief" usefile="false" />
+		</junit>
+	</target>
+
+	<!-- RUNNING TASK - "ant coveragetest" -->
+	<target name="coveragetest" depends="compile">
+		<jacoco:coverage destfile="${result.exec.file}">
+			<junit fork="yes" forkmode="once">
+				<test name="edu.allegheny.kinetic.AllTests" />
+				<classpath refid="run.classpath" />
+				<formatter type="brief" usefile="false" />
+			</junit>
+		</jacoco:coverage>
+	</target>
+
+	<!-- RUNNING TASK - "ant coverage" -->
+	<target name="coverage" depends="coveragetest">
+		<jacoco:report>
+			<executiondata>
+				<file file="${result.exec.file}" />
+			</executiondata>
+
+			<structure name="Kinetic Coverage Report">
+				<classfiles>
+					<fileset dir="${result.classes.dir}" />
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="${src.dir}" />
+				</sourcefiles>
+			</structure>
+			
+			<html destdir="${result.report.dir}/AllTests/" />
+			<csv destfile="${result.report.dir}/AllTests/report.csv" />
+			<xml destfile="${result.report.dir}/AllTests/report.xml" />
+		</jacoco:report>
+	</target>
+
+</project>

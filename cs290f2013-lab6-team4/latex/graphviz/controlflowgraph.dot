@@ -1,0 +1,24 @@
+digraph G
+{
+	graph [label="Example of a control flow graph to be able to compute a CCN. This is an example of graph of a function with 2 if else statements.  "];
+	node [shape = record];
+
+	node0 [ label ="<f0>"];
+	node1 [ label ="<f0>"];
+	node2 [ label ="<f0>"];
+	node3 [ label ="<f0>"];
+	node4 [ label ="<f0>"];
+	node5 [ label ="<f0>"];
+	node6 [ label ="<f0>"];
+
+"node0": f0 -> "node1":f0;
+"node0": f0 -> "node2":f0;
+"node1": f0 -> "node3":f0;
+"node2": f0 -> "node3":f0;
+"node3": f0 -> "node4":f0;
+"node3": f0 -> "node5":f0;
+"node5": f0 -> "node6":f0;
+"node4": f0 -> "node6":f0;
+"node6": f0 -> "node0":f0; 
+
+}

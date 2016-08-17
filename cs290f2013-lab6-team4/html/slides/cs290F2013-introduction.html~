@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html><head>
+<title>Computer Science 290 Fall 2013 LAB 1</title>
+<meta charset='utf-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link href='../css/big.css' rel='stylesheet'type='text/css'/>
+<script src='../css/big.js'></script>
+</head><body>
+
+<div><em>Computer Science 290 Lab 6</em> <em class="green">Fall</em> 2013</div>
+
+<div>Matthew Hajduk, Adam Wechter, Brian Graham, Shane Regel, andreas Landgerbe</div>
+
+<div><em>JDepend</em> <em class="scarlet"></em></div>
+
+<div>A tool for measuring the quality of design in terms of its ability to manage package dependencies effectively.</div>
+
+<div><img src="figure2.jpg"/></div>
+
+<div><em class="blue">Metrics</em> Number of Classes and Interfaces, Afferent Couplings (Ca), Efferent Couplings (Ce), Abstractness (A), Instability (I), Distance from the Main Sequence (D), Package Dependency Cycles</div>
+
+<DIV>Program 1</DIV>
+<div><img src="Lab3JDependReport.png"/></div>
+
+<div>Program 2</div>
+<div><img src="Lab4JDependReport.png"/></div>
+
+<DIV>JDepend on JDepend</DIV>
+<div><img src="JDependJDependReport.png"/></div>
+
+<div><em>JavaNCSS</em> <em class="sky"></em></div>
+
+<div>A tool that looks at the number of Non commenting Source Statements(NCSS), calculates the Cyclomatic Complexity Number(CCN), and the number of Javadoc comments per class and method. </div>
+
+<DIV><em>JavaNCSS</em> <em class="scarlet">Program 1</em></DIV>
+<div><img src="lab3results.png"/></div>
+
+<DIV><em>JavaNCSS</em> <em class="scarlet">Program 2</em></DIV>
+<div><img src="Lab4results.png"/></div>
+
+<DIV><em>JavaNCSS</em> <em class="scarlet">Open Source Program</em></DIV>
+<div><img src="JDEPENDS_HOMEresults.png"/></div>
+
+<div><img src="../screenshots/thatsall.gif"/></div>
+
+
+</body>
+</html>
+

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>KineticTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Kinetic Coverage Report</a> &gt; <a href="index.html" class="el_package">edu.allegheny.kinetic</a> &gt; <span class="el_source">KineticTest.java</span></div><h1>KineticTest.java</h1><pre class="source lang-java linenums">package edu.allegheny.kinetic;
+
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+/**
+ *
+ *
+ * @author
+ */
+<span class="fc" id="L12">public class KineticTest {</span>
+
+    /**
+     *
+     *
+     */
+    @Test
+    public void testVelocityComputationIsUndefined() {
+<span class="fc" id="L20">        String expected = new String(&quot;Undefined&quot;);</span>
+<span class="fc" id="L21">        String actual = Kinetic.computeVelocity(5, 0);</span>
+<span class="fc" id="L22">        assertEquals(expected, actual);</span>
+<span class="fc" id="L23">    }</span>
+
+    @Test
+    public void testVelocityComputationIsZero() {
+<span class="fc" id="L27">        String expected = new String(&quot;0&quot;);</span>
+<span class="fc" id="L28">        String actual = Kinetic.computeVelocity(0, 5);</span>
+<span class="fc" id="L29">        assertEquals(expected, actual);</span>
+<span class="fc" id="L30">    }</span>
+
+    @Test
+    public void testVelocityComputationWithNonZeroValues() {
+<span class="fc" id="L34">        String expected = new String(&quot;4&quot;);</span>
+<span class="fc" id="L35">        String actual = Kinetic.computeVelocity(8, 1);</span>
+<span class="fc" id="L36">        assertEquals(expected, actual);</span>
+<span class="fc" id="L37">    }</span>
+
+    @Test
+    public void testVelocityComputationWithNegativeMass() {
+<span class="fc" id="L41">        String expected = new String(&quot;Undefined&quot;);</span>
+<span class="fc" id="L42">        String actual = Kinetic.computeVelocity(8, -1);</span>
+<span class="fc" id="L43">        assertEquals(expected, actual);</span>
+<span class="fc" id="L44">    }</span>
+
+    @Test
+    public void testVelocityComputationWithNegativeKinetic() {
+<span class="fc" id="L48">        String expected = new String(&quot;Undefined&quot;);</span>
+<span class="fc" id="L49">        String actual = Kinetic.computeVelocity(-8, 1);</span>
+<span class="fc" id="L50">        assertEquals(expected, actual);</span>
+<span class="fc" id="L51">    }</span>
+
+    @Test
+    public void testVelocityComputationWithNegativeMassKinetic() {
+<span class="fc" id="L55">        String expected = new String(&quot;Undefined&quot;);</span>
+<span class="fc" id="L56">        String actual = Kinetic.computeVelocity(-8, -1);</span>
+<span class="fc" id="L57">        assertEquals(expected, actual);</span>
+<span class="fc" id="L58">    }</span>
+
+    @Test
+    public void testKineticConstructor() {
+<span class="fc" id="L62">        Kinetic kinetic = new Kinetic();</span>
+<span class="fc" id="L63">        assertNotNull(kinetic);</span>
+<span class="fc" id="L64">    }</span>
+
+    @Test
+    public void testAllTestsConstructor() {
+<span class="fc" id="L68">        AllTests alltests = new AllTests();</span>
+<span class="fc" id="L69">        assertNotNull(alltests);</span>
+<span class="fc" id="L70">    }</span>
+
+    /* Driver tests */
+    @Test
+    public void testDriverConstructor(){
+<span class="fc" id="L75">        Driver driver = new Driver();</span>
+<span class="fc" id="L76">        assertNotNull(driver);</span>
+<span class="fc" id="L77">    }</span>
+
+    @Test
+    public void testDriverMain(){
+<span class="fc" id="L81">        String[] test = {&quot;8&quot;, &quot;1&quot;};</span>
+        try
+        {
+<span class="fc" id="L84">            Driver.main(test);</span>
+        }
+<span class="nc" id="L86">        catch(Exception e)</span>
+        {
+<span class="nc" id="L88">            assertNull(e);</span>
+<span class="fc" id="L89">        }</span>
+<span class="fc" id="L90">        assertTrue(true);</span>
+<span class="fc" id="L91">    }</span>
+
+    @Test
+    public void testDriverBadInput(){
+<span class="fc" id="L95">        String[] test = {&quot;Bad&quot;, &quot;Input&quot;};</span>
+        try
+        {
+<span class="fc" id="L98">            Driver.main(test);</span>
+        }
+<span class="nc" id="L100">        catch(Exception e)</span>
+        {
+<span class="nc" id="L102">            assertNull(e);</span>
+<span class="fc" id="L103">        }</span>
+<span class="fc" id="L104">        assertTrue(true);</span>
+<span class="fc" id="L105">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.5.9.201207211933</span></div></body></html>

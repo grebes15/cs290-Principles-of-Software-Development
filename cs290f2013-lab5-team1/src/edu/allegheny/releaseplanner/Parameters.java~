@@ -1,0 +1,18 @@
+import com.beust.jcommander.Parameter;
+import com.beust.jcommander.converters.CommaParameterSplitter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Parameters {
+
+    @Parameter(names = "-file",description = "CSV file of inputs") 
+    public List<String> csvInput;
+
+    @Parameter(names = "-C",description = "Total Cost",required=true) 
+    public Integer w;
+
+    @Parameter(names = "-rq",description = "Requirements",variableArity = true)
+    public List<String> req = new ArrayList<String>;
+
+}
